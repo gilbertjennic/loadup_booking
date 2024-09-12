@@ -1,0 +1,31 @@
+<h1>Book a Pet Sitting Service</h1>
+
+<%= form_with model: @booking, url: bookings_path, local: true do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :animal_name %>
+    <%= f.text_field :animal_name %>
+  </div>
+  <div>
+    <%= f.label :animal_type %>
+    <%= f.select :animal_type, Booking.animal_types.keys %>
+  </div>
+  <div>
+    <%= f.label :hours_requested %>
+    <%= f.number_field :hours_requested, min: 2, max: 8 %>
+  </div>
+  <div>
+    <%= f.label :date_of_service %>
+    <%= f.date_field :date_of_service %>
+  </div>
+  <div>
+    <%= f.submit "Submit Booking" %>
+  </div>
+<% end %>
