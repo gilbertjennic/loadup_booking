@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
       @price = PricingEngineService.calculate(@booking.animal_type, @booking.hours_requested)
       redirect_to bookings_path, notice: "Booking created successfully! Total price: $#{@price}"
     else
+      @errors = @booking.errors.full_messages
       render :new
     end
   end

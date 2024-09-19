@@ -1,31 +1,56 @@
-<h1>Book a Pet Sitting Service</h1>
+<div class="container mt-4">
+  <div class="mt-2 pull-right">
+    <%= link_to 'View All Bookings', bookings_path, class: 'btn btn-primary' %>
+  </div>
+  <h1 class="text-center">New Booking</h1>
+  
+  <% if @errors.present? %>
+    <div class="alert alert-danger alert-dismissible fade show">
+      <h5>Following Errors occurred while creating booking:</h5>
+      <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
 
-<%= form_with model: @booking, url: bookings_path, local: true do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div>
-    <%= f.label :animal_name %>
-    <%= f.text_field :animal_name %>
-  </div>
-  <div>
-    <%= f.label :animal_type %>
-    <%= f.select :animal_type, Booking.animal_types.keys %>
-  </div>
-  <div>
-    <%= f.label :hours_requested %>
-    <%= f.number_field :hours_requested, min: 2, max: 8 %>
-  </div>
-  <div>
-    <%= f.label :date_of_service %>
-    <%= f.date_field :date_of_service %>
-  </div>
-  <div>
-    <%= f.submit "Submit Booking" %>
-  </div>
-<% end %>
+  <%= form_with model: @booking, local: true, class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :first_name, class: "form-label" %>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "Enter first name" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, class: "form-label" %>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Enter last name" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :animal_name, class: "form-label" %>
+      <%= f.text_field :animal_name, class: "form-control", placeholder: "Enter animal name" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :animal_type, class: "form-label" %>
+      <%= f.select :animal_type, options_for_select(['Dog', 'Cat']), { prompt: 'Select Animal Type' }, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :hours_requested, class: "form-label" %>
+      <%= f.number_field :hours_requested, class: "form-control", min: 2, max: 8, placeholder: "Hours must be between 2 to 8" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date_of_service, class: "form-label" %>
+      <%= f.date_field :date_of_service, class: "form-control" %>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "Submit Booking", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

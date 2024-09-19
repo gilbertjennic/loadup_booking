@@ -1,26 +1,35 @@
-<h1>All Bookings</h1>
+<div class="container">
+  <div class="mr-3 mt-2 pull-right">
+    <%= link_to "Create Booking", new_booking_path, class: 'btn btn-primary' %>
+  </div>
+  <h1 class="text-center my-4">All Bookings</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Animal Name</th>
-      <th>Animal Type</th>
-      <th>Hours Requested</th>
-      <th>Date of Service</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.first_name %></td>
-        <td><%= booking.last_name %></td>
-        <td><%= booking.animal_name %></td>
-        <td><%= booking.animal_type %></td>
-        <td><%= booking.hours_requested %></td>
-        <td><%= booking.date_of_service %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="container">
+    <table id="booking-table" class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Animal Name</th>
+          <th>Animal Type</th>
+          <th>Price</th>
+          <th>Date of Service</th>
+          <th>Hours Requested</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.first_name %></td>
+            <td><%= booking.last_name %></td>
+            <td><%= booking.animal_name %></td>
+            <td><%= booking.animal_type %></td>
+            <td><%= number_to_currency(booking.price) %></td>
+            <td><%= booking.date_of_service %></td>
+            <td><%= booking.hours_requested %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
